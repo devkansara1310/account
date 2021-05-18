@@ -1,0 +1,49 @@
+{% load static %}
+<html>
+<head>
+<link href="{% static 'css/insta.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+  <div class="main-content">
+    <div class="header">
+      <img src="https://i.imgur.com/zqpwkLQ.png" />
+    </div>
+    </br>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="l-part">
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+          {{ form.username.errors }}
+          </br> </br> </br>
+          <label for="{{ form.username.id_for_label }}">Username:</label>
+          <input type="text" name="username">
+        </div>
+      </br>
+      </br>
+        <div class="fieldWrapper">
+          {{ form.password.errors }}
+          <label for="{{ form.password.id_for_label }}">Password:  </label>
+            <input type="password" name="password">
+        </div>
+      </br> </br>
+          <button type="submit" class="btn">Login</button>
+      </div>
+    	<div>
+    		
+    </div>
+    </form>
+    {% for message in messages %}
+    			<p id="message">{{message}}</p>
+    		{% endfor %}
+
+    <div class="sub-content" style="margin: 50px -50px auto;">
+      <div class="s-part">
+        Don't have an account?<a href="{% url 'registration'%}">Sign up</a>
+      </div>
+    </div>
+</div>
+</body>
+</html>
